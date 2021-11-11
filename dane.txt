@@ -1,0 +1,1 @@
+czas wykonywania algorytmu = 48 dla sumy rownej = 20 i liczby elementow rownej = 20 znaleziono = 24 kombinacji

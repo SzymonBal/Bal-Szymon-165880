@@ -1,6 +1,4 @@
 ﻿
-/**/
-
           /*Bal Szymon-165880-Algorytmy i Strukury Danych-Projekt 1
 
             Zadanie 15. ZnajdŸ liczbê trójelementowych kombinacji liczb z zadanego ci¹gu, których suma jest równa zadanej lizcbie M.
@@ -66,7 +64,7 @@ int main()
     return 0;
 }
 
-void wypelnij(int tablica[], int rozmiar)/*losowanie generujące liczby do ciągu posiadającego ilość elemenetów (rozmiar)*/
+void wypelnij(int tablica[], int rozmiar)/*Losowanie generujące liczby do ciągu posiadającego ilość elemenetów (rozmiar)*/
 {
     srand(time(NULL));
     for (int i = 0; i < rozmiar; i++)
@@ -77,7 +75,7 @@ void wypelnij(int tablica[], int rozmiar)/*losowanie generujące liczby do ciąg
     }
 }
 
-void znajdz_kombinacje(int tablica[], int rozmiar, int suma) /*głowna funkcja której zadaniem jest znajdowanie trójelementowych ekombinacji.
+void znajdz_kombinacje(int tablica[], int rozmiar, int suma) /*Głowna funkcja której zadaniem jest znajdowanie trójelementowych ekombinacji.
                                                               Za pomocą 3 pętli funkcja sprawdza wszystkie liczby.Jezeli elementy spelniaja odpowiedni warunek
                                                               (ich suma jest równa zadanej przez uzytkownka M) to wyswietl je na ekranie.*/
 {
@@ -87,11 +85,11 @@ void znajdz_kombinacje(int tablica[], int rozmiar, int suma) /*głowna funkcja k
     double czas;
 
     ofstream zapis;
-    zapis.open("dane.txt", ios::app); /*kolejne uruchomienia programu*/
+    zapis.open("dane.txt", ios::app); /*Kolejne uruchomienia programu*/
 
     clock_t start, stop;
 
-    start = clock(); /*początek odliczania czasu w jakim zostaje wykonana funkcja*/
+    start = clock(); /*Początek odliczania czasu w jakim zostaje wykonana funkcja*/
 
     int licz_wystapienia = 0;
 
@@ -112,7 +110,7 @@ void znajdz_kombinacje(int tablica[], int rozmiar, int suma) /*głowna funkcja k
         }
     }
 
-    /*zapis otrzymanych danych, wyświetlona zostaje:
+    /*Zapis otrzymanych danych, wyświetlona zostaje:
       - ilość znalezionych kombinacji
       - wsyzskie znalezione kombinacje liczbowe
       - czas potrzebny na wykonanie algorytmu
@@ -120,7 +118,7 @@ void znajdz_kombinacje(int tablica[], int rozmiar, int suma) /*głowna funkcja k
 
     cout << endl << "znaleziono: " << licz_wystapienia << " kombinacji" << endl; // <-- i tu jest nowe
 
-    stop = clock(); /*koniec odliczania czasu w jakim zostaje wykonana funkcja*/
+    stop = clock(); /*Koniec odliczania czasu w jakim zostaje wykonana funkcja*/
     czas = ((stop - start) * 1000) / (CLOCKS_PER_SEC);
 
 
@@ -128,7 +126,7 @@ void znajdz_kombinacje(int tablica[], int rozmiar, int suma) /*głowna funkcja k
     zapis << " znaleziono = " << licz_wystapienia << " kombinacji \n";
     zapis << "-----------------------------------------------------------\n ";
 
-    zapis.close(); //obowiązkowo należy zamknąć plik
+    zapis.close(); //Obowiązkowo należy zamknąć plik
 
 }
 

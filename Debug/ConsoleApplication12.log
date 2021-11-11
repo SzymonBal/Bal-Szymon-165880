@@ -1,0 +1,6 @@
+﻿  ConsoleApplication12.cpp
+C:\Users\Szymon Bal\Documents\GitHub\Bolus\ConsoleApplication12\ConsoleApplication12.cpp(80,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\Szymon Bal\Documents\GitHub\Bolus\ConsoleApplication12\ConsoleApplication12.cpp(91,15): warning C4101: "k": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\Szymon Bal\Documents\GitHub\Bolus\ConsoleApplication12\ConsoleApplication12.cpp(91,12): warning C4101: "j": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\Szymon Bal\Documents\GitHub\Bolus\ConsoleApplication12\ConsoleApplication12.cpp(91,9): warning C4101: "i": lokalna zmienna, do której nie istnieje odwołanie
+  ConsoleApplication12.vcxproj -> C:\Users\Szymon Bal\Documents\GitHub\Bolus\ConsoleApplication12\Debug\ConsoleApplication12.exe
