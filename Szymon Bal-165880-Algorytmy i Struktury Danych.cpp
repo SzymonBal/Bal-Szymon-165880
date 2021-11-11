@@ -1,38 +1,45 @@
-﻿/* Zadanie 15. ZnajdŸ liczbê trójelementowych kombinacji liczb z zadanego ci¹gu, których suma jest równa zadanej lizcbie M.
-    Przyk³ad.
-        Wejœcie: [ 1, 2, 5, 1, 2, 1, 2, 4 ]
-                M = 6
-                Wyjœcie:
-                Liczba kombinacji wynosi 3: [ 1 2 3 ], [ 2 2 2 ], [ 1 1 4 ]
+﻿
+/**/
+
+          /*Bal Szymon-165880-Algorytmy i Strukury Danych-Projekt 1
+
+            Zadanie 15. ZnajdŸ liczbê trójelementowych kombinacji liczb z zadanego ci¹gu, których suma jest równa zadanej lizcbie M.
+            Przyk³ad.
+            Wejœcie: [ 1, 2, 5, 1, 2, 1, 2, 4 ]
+            M = 6
+            Wyjœcie:
+            Liczba kombinacji wynosi 3: [ 1 2 3 ], [ 2 2 2 ], [ 1 1 4 ]
+*/
+
+/*Biblioteki użyte podczas programowania 
+iostream = operacje wejścia, wyjścia,obliczenia
+cstdlib/time.h = losowanie danych do ciągu
 */
 #include <iostream>
 #include <time.h>
 #include <cstdlib>
 #include <fstream>
-#include <iomanip>
+
 
 using namespace std;
 
-void wypelnij(int tablica[], int rozmiar);
+
+
+void wypelnij(int tablica[], int rozmiar); 
 void znajdz_kombinacje(int tablica[], int rozmiar, int suma);
-
-/*  Dla czytelnosci programu tworzymy funkcje void ktorej zadaniem jest znalezienie wszystkich trojelementowych kombinacji,
-  wykonujemy w niej 3 petle ktore pokolei sprawdzaja liczby, pierwsza petla zaczyna sie od indeksu 0 i konczy na 5 w tabeli,
-  druga od indeksu 1 i konczy na 6, a trz od miejsca 2 i konczy na 7. Jezeli elementy spelniaja odpowiedni warunek
-  (ich suma jest równa zadanej przez uzytkownka M) to wyswietl je na ekranie.
-
-*/
 
 
 int main()
-{
+{/*Zmienne występujące w programie 
+ suma = maksymalna liczba losowa możliwa do wczytywana do ciągu
+ rozmiar = ilośc elementów z których składa się tablica
+ tablica = ciąg liczbowy w którym funkcja wyszukuje kombinacji
+ */
     int suma;
     int rozmiar;
     int* tablica;
 
-    double czas;
-
-    clock_t start, stop;
+    /*Wprowadzamy ilość elementów ciągu*/
 
     cout << "Podaj rozmiar tablicy: "; cin >> rozmiar;
     tablica = new int[rozmiar];
@@ -45,37 +52,21 @@ int main()
         cout << tablica[i] << "\n\n";
     }
 
-    // Do wypisania potrzebna jest petla ktora bedzie wykonywac sie n-krotnie
-
-
-
-
     // Wprowadzamy wartosc sumy
 
     cout << "wprowadz wartosc sumy: ";
     cin >> suma;
     cout << "kombinacje: " << endl;
-    // Wywolujemy funkcje void
 
-    start = clock();
+
+    // Wywolujemy funkcje void
 
     znajdz_kombinacje(tablica, rozmiar, suma);
 
-    stop = clock();
-    czas = ((stop - start) * 1000) / (CLOCKS_PER_SEC);
-
-    cout << "czas wykonywania programu wynosi = " << czas << " ms";
-
-   
-   
-
     return 0;
-
-
-
 }
 
-void wypelnij(int tablica[], int rozmiar)
+void wypelnij(int tablica[], int rozmiar)/*losowanie generujące liczby do ciągu posiadającego ilość elemenetów (rozmiar)*/
 {
     srand(time(NULL));
     for (int i = 0; i < rozmiar; i++)
@@ -86,17 +77,23 @@ void wypelnij(int tablica[], int rozmiar)
     }
 }
 
-void znajdz_kombinacje(int tablica[], int rozmiar, int suma)
+void znajdz_kombinacje(int tablica[], int rozmiar, int suma) /*głowna funkcja której zadaniem jest znajdowanie trójelementowych ekombinacji.
+                                                              Za pomocą 3 pętli funkcja sprawdza wszystkie liczby.Jezeli elementy spelniaja odpowiedni warunek
+                                                              (ich suma jest równa zadanej przez uzytkownka M) to wyswietl je na ekranie.*/
 {
-    int i, j, k;
 
+
+    int i, j, k;
     double czas;
+
+    ofstream zapis;
+    zapis.open("dane.txt", ios::app); /*kolejne uruchomienia programu*/
 
     clock_t start, stop;
 
-    start = clock();
+    start = clock(); /*początek odliczania czasu w jakim zostaje wykonana funkcja*/
 
-    int licz_wystapienia = 0; // <-- tu jest nowe
+    int licz_wystapienia = 0;
 
     for (int i = 0; i < rozmiar - 2; i++)
     {
@@ -107,24 +104,30 @@ void znajdz_kombinacje(int tablica[], int rozmiar, int suma)
                 if (tablica[i] + tablica[j] + tablica[k] == suma)
                 {
                     cout << tablica[i] << " ," << tablica[j] << " ," << tablica[k] << endl << endl;
-                    licz_wystapienia++; // <-- i tu jest nowe
+                    licz_wystapienia++;
+                    zapis << tablica[i] << ", " << tablica[j] << "," << tablica[k] << endl;
                 }
 
             }
         }
     }
-   
 
-  
+    /*zapis otrzymanych danych, wyświetlona zostaje:
+      - ilość znalezionych kombinacji
+      - wsyzskie znalezione kombinacje liczbowe
+      - czas potrzebny na wykonanie algorytmu
+      - parametry dla których otrzymane zostały dane wyniki (ilość liczb w ciągu,zakres*/
+
     cout << endl << "znaleziono: " << licz_wystapienia << " kombinacji" << endl; // <-- i tu jest nowe
-    ofstream zapis("dane.txt");
-    stop = clock();
+
+    stop = clock(); /*koniec odliczania czasu w jakim zostaje wykonana funkcja*/
     czas = ((stop - start) * 1000) / (CLOCKS_PER_SEC);
 
 
-    zapis << "czas wykonywania algorytmu = " <<czas<<  " " << "dla sumy rownej = " << suma << " i liczby elementow rownej = " << rozmiar;
-    zapis << " znaleziono = " << licz_wystapienia<<" kombinacji";
-   
+    zapis << "czas wykonywania algorytmu = " << czas << " " << "dla sumy rownej = " << suma << " i liczby elementow rownej = " << rozmiar;
+    zapis << " znaleziono = " << licz_wystapienia << " kombinacji \n";
+    zapis << "-----------------------------------------------------------\n ";
+
     zapis.close(); //obowiązkowo należy zamknąć plik
 
 }
